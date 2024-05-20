@@ -56,16 +56,26 @@ public class MovieService {
         movieRepository.deleteById(Long.valueOf(id));
     }
 
-    public List<Movie> searchMovies(String searchTerm) {
-        String lowerCaseSearchTerm = searchTerm.toLowerCase();
-        // Search by title
-        List<Movie> moviesByTitle = movieRepository.findByTitleContainingIgnoreCase(lowerCaseSearchTerm);
-        // Search by genre name
-        List<Movie> moviesByGenre = movieRepository.findByGenresNameContainingIgnoreCase(lowerCaseSearchTerm);
-        // Merge and remove duplicates if necessary
-        // You can implement a method to remove duplicates based on movie IDs or use a Set
-        moviesByTitle.addAll(moviesByGenre);
-        return moviesByTitle;
+    public List<Movie> searchMovies(String title, String genre) {     
+        if(title == null && genre == null){
+            throw new IllegalArgumentException("You must provide either a title or a genre");
+        }
+
+        List<Movie> movies;
+        if (title != null && genre != null) {
+            movies = movieRepository.findByTitleContainingAndGenresNameContaining(title, genre);
+        } else if (title != null) {
+            movies = movieRepository.findByTitleContaining(title);
+        } else {
+            movies = movieRepository.findByGenresNameContaining(genre);
+        }
+
+        if (movies.isEmpty()) {
+            throw new EntityNotFoundException("No movies were found");
+        }
+
+        return movies;
     }
+
     
 }

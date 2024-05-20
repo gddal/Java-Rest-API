@@ -28,12 +28,17 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<String> handleIllegalArgumentException(ConstraintViolationException ex) {
+    public ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException ex) {
         List<String> errors = new ArrayList<>();
         for (ConstraintViolation<?> violation : ex.getConstraintViolations()) {
             errors.add(violation.getMessage());
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage().concat(errors.toString()));
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
     @ExceptionHandler(DataIntegrityViolationException.class)

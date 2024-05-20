@@ -12,4 +12,10 @@ public interface MovieRepository extends JpaRepository<Movie, Long> {
 
     public List<Movie> findByGenresNameContainingIgnoreCase(String lowerCaseSearchTerm);
 
+    public List<Movie> findByTitleContaining(String title);
+
+    public List<Movie> findByGenresNameContaining(String genre);
+
+    public List<Movie> findByTitleContainingAndGenresNameContaining(String title, String genre);
+
 }

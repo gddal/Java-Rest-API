@@ -1,6 +1,5 @@
 package com.example.demo.controllers;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -70,10 +69,11 @@ public class MainController {
   }
 
   @GetMapping("/search")
-  public List<Movie> searchMovies(@RequestParam(value = "searchTerm", required = false) String searchTerm) {
-     if (searchTerm != null && !searchTerm.isEmpty()) {
-            return movieService.searchMovies(searchTerm);
-        }
-        return Collections.emptyList();
+  public ResponseEntity<List<Movie>> searchMovies(
+          @RequestParam(value = "title", required = false) String title,
+          @RequestParam(value = "genre", required = false) String genre) {
+      
+      List<Movie> movies = movieService.searchMovies(title, genre);
+      return ResponseEntity.ok(movies);
   }
 }
