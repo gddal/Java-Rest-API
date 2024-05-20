@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,8 +59,9 @@ public class MainController {
   }
 
   @PostMapping("/genres/add")
-  public Genre addGenre(@RequestBody Genre newGenre) {
-      return genreService.addGenre(newGenre);
+  public ResponseEntity<Genre> addGenre(@RequestBody Genre newGenre) {
+    Genre savedGenre = genreService.addGenre(newGenre);
+    return ResponseEntity.status(HttpStatus.CREATED).body(savedGenre);
   }
   
   @DeleteMapping("/genres/delete")
