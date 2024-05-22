@@ -3,6 +3,9 @@ package com.example.demo.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.pojos.Genre;
@@ -34,8 +37,9 @@ public class MovieService {
         return finalGenres;
     }
 
-    public Iterable<Movie> listMovies() {
-        return movieRepository.findAll();
+    public Page<Movie> listMovies(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return movieRepository.findAll(pageable);
     }
 
     public Movie updateMovie(String id, Movie updatedMovie) {

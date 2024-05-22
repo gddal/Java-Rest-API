@@ -53,14 +53,12 @@ public class GenreService {
         if(!genreToDeleteOptional.isPresent())
             throw new EntityNotFoundException("The following genre doesn't exist: "+ genreName);
                                     
-        // Remove the genre from all movies
         Genre genre = genreToDeleteOptional.get();
         List<Movie> movies = genre.getMovies();
         for (Movie movie : movies) {
             movie.getGenres().remove(genre);
         }
 
-        // Delete the genre
         genreRepository.delete(genre);
     }
       

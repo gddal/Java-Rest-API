@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,8 +39,10 @@ public class MainController {
   }
 
   @GetMapping("/all")
-  public Iterable<Movie> listMovies() {
-    return movieService.listMovies();
+  public Page<Movie> listMovies(
+    @RequestParam(defaultValue = "0") int page,
+    @RequestParam(defaultValue = "10") int size) {
+    return movieService.listMovies(page, size);
   }
 
   @PutMapping("/update")
