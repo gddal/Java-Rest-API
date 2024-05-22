@@ -1,0 +1,190 @@
+{
+	"info": {
+		"_postman_id": "610d8035-4366-4592-ad98-8ee0801002eb",
+		"name": "RestAPI Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15364299"
+	},
+	"item": [
+		{
+			"name": "addMovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"The Shawshank Redemption 2\",\n    \"description\": \"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.\",\n    \"releaseDate\": \"2004-09-10\",\n    \"genres\": [\n        {\n            \"name\": \"Drama\"\n        },\n        {\n            \"name\": \"Thriller\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addGenre",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"comedy\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies/genres/add",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"genres",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listMovies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/all",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "searchMovies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/search",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateMovie",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Crazy Drama\",\n    \"description\": \"update\",\n    \"releaseDate\": \"2005-09-10\",\n    \"genres\": [\n        {\n            \"name\": \"Drama\"\n        },\n        {\n            \"name\": \"Horror\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/movies/update?id=1204",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"update"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1204"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteGenre",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/genres/delete?genre=comedy",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"genres",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "genre",
+							"value": "comedy"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMovie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/movies/delete?id=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
